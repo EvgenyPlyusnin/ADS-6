@@ -28,6 +28,11 @@ class TPQueue {
             count++;
             return;
         }
+        if (count == 1 && arr[0].prior == x.prior) {
+            arr[1] = x;
+            count++;
+            return;
+        }
         for (int i = 1; i <= size; i++) {
             if (arr[i-1].prior < x.prior) {
                 T temp = arr[i-1];
@@ -37,11 +42,13 @@ class TPQueue {
                     arr[j] = temp;
                     temp = temp2;
                 }
+                count < size? count++ : count = 5;
                 break;
             }
         }
     }
     T pop() {
+        count--;
         return arr[take++];
     }
 };
